@@ -1,0 +1,420 @@
+---
+title: "HMS Vocal Patterns_All Sites"
+author: "Kyleigh Fertitta, updated by Phil Patton and Kirby Parnell"
+date: "2025 01 15"
+output: html_document
+---
+```{r}
+library(ggplot2)
+library(dplyr)
+library(lubridate)
+library(tidyverse)
+library(readxl)
+
+
+# Read in Excel
+RI20_1 <- read_excel("RI_5641_2020_FINAL.xls")
+
+# Filter to only HMS Calls
+RI20_1 <- RI20_1 %>%
+  filter(Call %in% c("Croak", "Growl", "Whoop"))
+head(RI20_1)
+
+# Separate Start.time into Date and Start.time
+RI20_1 <- RI20_1 %>%
+  mutate(
+    `Start datetime` = as.POSIXct(`Start time`, format = "%m/%d/%Y %H:%M:%OS"),
+    Date = format(`Start time`, "%m/%d/%Y"),
+    `Start time` = format(`Start datetime`, "%H:%M:%OS")
+  )
+
+# Add "Location" variable to RI20_1
+RI20_1$Location <- "RI20_1"
+
+
+# Read in Excel
+RI20_2 <- read_excel("RI_5642_2020_FINAL.xls")
+
+# Filter to only HMS Calls
+RI20_2 <- RI20_2 %>%
+  filter(Call %in% c("BridgeWhoop", "Croak", "Growl", "GrowlRumbleWhoop", "GrowlWhoop", "Moan", "MoanGrowl", "MoanGrowlMoanWhoop", "MoanGrowlRumbleWhoop", "MoanWhoop", "Whoop"))
+head(RI20_2)
+
+# Separate Start.time into Date and Start.time
+RI20_2 <- RI20_2 %>%
+  mutate(
+    `Start datetime` = as.POSIXct(`Start time`, format = "%m/%d/%Y %H:%M:%OS"),
+    Date = format(`Start time`, "%m/%d/%Y"),
+    `Start time` = format(`Start datetime`, "%H:%M:%OS")
+  )
+
+# Add "Location" variable to RI20_2
+RI20_2$Location <- "RI20_2"
+
+# Read in Excel
+RI21 <- read_excel("RI_5641_2021_FINAL.xls")
+
+# Filter to only HMS Calls
+RI21 <- RI21 %>%
+  filter(Call %in% c("Croak", "Growl", "GrowlRumble", "GrowlRumbleWhoop", "GrowlWhoop", "Moan", "MoanGrowl", "MoanGrowlRumbleWhoop", "MoanGrowlWhoop", "MoanWhoop", "Rumble", "RumbleWhoop", "Whoop"))
+head(RI21)
+
+# Separate Start.time into Date and Start.time
+RI21 <- RI21 %>%
+  mutate(
+    `Start datetime` = as.POSIXct(`Start time`, format = "%m/%d/%Y %H:%M:%OS"),
+    Date = format(`Start time`, "%m/%d/%Y"),
+    `Start time` = format(`Start datetime`, "%H:%M:%OS")
+  )
+
+# Add "Location" variable to RI21
+RI21$Location <- "RI21"
+
+
+# Read in Excel
+LehuaRock <- read_excel("LehuaRock_5641_2021_FINAL.xls")
+
+# Filter to only HMS Calls
+LehuaRock <- LehuaRock %>%
+  filter(Call %in% c("Croak", "Growl", "GrowlWhoop", "ForagingCall", "Moan", "MoanForagingCall", "MoanGrowl", "MoanWhoop", "Whoop"))
+head(LehuaRock)
+
+# Separate Start.time into Date and Start.time
+LehuaRock <- LehuaRock %>%
+  mutate(
+    `Start datetime` = as.POSIXct(`Start time`, format = "%m/%d/%Y %H:%M:%OS"),
+    Date = format(`Start time`, "%m/%d/%Y"),
+    `Start time` = format(`Start datetime`, "%H:%M:%OS")
+  )
+
+# Add "Location" variable to LehuaRock
+LehuaRock$Location <- "LehuaRock"
+
+
+# Read in Excel
+Kala <- read_excel("Kala_2023_Compiled_Data_FINAL.xlsx")
+
+# Filter to only HMS Calls
+Kala <- Kala %>%
+  filter(Call %in% c("Croak", "Growl", "GrowlRumbleWhoop", "Moan", "MoanGrowl", "Rumble", "Whoop"))
+head(Kala)
+
+# Separate Start.time into Date and Start.time
+Kala <- Kala %>%
+  mutate(
+    `Start datetime` = as.POSIXct(`Start time`, format = "%m/%d/%Y %H:%M:%OS"),
+    Date = format(`Start time`, "%m/%d/%Y"),
+    `Start time` = format(`Start datetime`, "%H:%M:%OS")
+  )
+
+# Add "Location" variable to Kala
+Kala$Location <- "Kala"
+
+
+# Read in Excel
+PHR <- read_excel("PHR_5643_2021_FINAL.xls")
+
+# Filter to only HMS Calls
+PHR <- PHR %>%
+  filter(Call %in% c("BridgeGrowl", "BridgeGrowlRumble", "Croak", "CroakBridgeGrowlWhoop", "Growl", "GrowlRumble", "GrowlRumbleWhoop", "GrowlWhoop", "Moan", "MoanBridge", "MoanBridgeGrowl", "MoanBridgeGrowlRumbleWhoop", "MoanGrowl", "MoanGrowlRumble", "MoanGrowlRumbleWhoop", "MoanGrowlWhoop", "MoanWhoop", "Whoop"))
+head(PHR)
+
+# Separate Start.time into Date and Start.time
+PHR <- PHR %>%
+  mutate(
+    `Start datetime` = as.POSIXct(`Start time`, format = "%m/%d/%Y %H:%M:%OS"),
+    Date = format(`Start time`, "%m/%d/%Y"),
+    `Start time` = format(`Start datetime`, "%H:%M:%OS")
+  )
+
+# Add "Location" variable to PHR
+PHR$Location <- "PHR"
+
+
+# Read in Excel
+FFS <- read_excel("FFS_5642_2021_FINAL.xlsx")
+
+# Filter to only HMS Calls
+FFS <- FFS %>%
+  filter(Call %in% c("Croak", "Groan", "Growl", "GrowlRumbleWhoop", "GrowlWhoop", "Moan", "MoanGrowl", "MoanGrowlWhoop", "MoanWhoop", "Whoop", "WhoopGrunt"))
+head(FFS)
+
+# Separate Start.time into Date and Start.time
+FFS <- FFS %>%
+  mutate(
+    `Start datetime` = as.POSIXct(`Start time`, format = "%m/%d/%Y %H:%M:%OS"),
+    Date = format(`Start time`, "%m/%d/%Y"),
+    `Start time` = format(`Start datetime`, "%H:%M:%OS")
+  )
+
+# Add "Location" variable to FFS
+FFS$Location <- "FFS"
+
+
+```
+
+
+```{r}
+Everything <- rbind(LehuaRock, PHR, FFS, RI20_1, RI20_2, RI21, Kala)
+
+# Add "Hour" variable to Everything
+Everything$Hour <- substr(Everything$`Start time`, 1, 2)
+Everything$Hour <- gsub(":", "", Everything$Hour)
+Everything$Hour <- as.numeric(Everything$Hour)
+
+# Convert 'Call' to numeric (assuming 'Call' represents the number of calls)
+Everything$Call = factor(Everything$Call)
+Everything$Call_Number <- as.numeric(Everything$Call)
+
+# Call Dictionary
+Call_Dictionary = unique(Everything[c('Call', 'Call_Number')])
+
+# First five minutes
+Everything$StartMinute = minute(Everything$`Start datetime`)
+firstfiveminutes = Everything[Everything$StartMinute < 5,]
+
+```
+
+
+```{r}
+# read in the SoundTrap active .csv
+soundtrap_active <- read.csv("ST_active.csv")
+
+# Remove the DataCounmt and .groups columns 
+soundtrap_active <- soundtrap_active[, -c(4, 5)]
+```
+
+```{r}
+# Make the dates work with each other
+soundtrap_active$Date <- as.Date(soundtrap_active$Date, format = "%m/%d/%y")
+firstfiveminutes$Date <- as.Date(firstfiveminutes$Date, format = "%m/%d/%Y")
+```
+
+```{r}
+# Create the data_counts_by_hour_day data frame
+data_counts_by_hour_day <- firstfiveminutes %>%
+  group_by(Location, Date, Hour) %>%
+  summarize(DataCount = n(), .groups = 'drop')
+
+# Merge with the complete set and replace missing values with 0
+data_counts_by_hour_day <- soundtrap_active %>%
+  left_join(data_counts_by_hour_day, by = c("Hour", "Date", "Location")) %>%
+  replace_na(list(DataCount = 0))
+
+# look at the times with the most calls
+head(data_counts_by_hour_day[order(data_counts_by_hour_day$DataCount, decreasing=T), ], 25)
+
+# Calculate the total number of unique hours analyzed for each deployment
+hours_per_deployment <- data_counts_by_hour_day %>%
+  distinct(Location, Date, Hour) %>%
+  group_by(Location) %>%
+  summarize(Total_Hours = n(), .groups = 'drop')
+
+# Calculate the total number of minutes analyzed for each deployment
+hours_per_deployment <- data_counts_by_hour_day %>%
+  distinct(Location, Date, Hour) %>%
+  group_by(Location) %>%
+  summarize(Total_Hours = n(), .groups = 'drop')
+
+minutes_per_deployment <- hours_per_deployment %>%
+  mutate(Total_Minutes = Total_Hours * 5)
+
+print(minutes_per_deployment)
+
+```
+
+```{r}
+# Average number of calls per hour across all days across all locations
+average_calls_per_hour <- aggregate(DataCount ~ Hour, mean, data=data_counts_by_hour_day)
+```
+
+
+```{r}
+# Create the average_calls_per_hour data frame for all locations
+average_calls_per_hour_location <- data_counts_by_hour_day %>%
+  group_by(Location, Hour) %>%
+  summarize(AverageDataCount = mean(DataCount, na.rm = TRUE), .groups = 'drop')
+
+# Print the resulting data frame
+print(average_calls_per_hour_location)
+
+# find the max vocalization count in a 5-min period
+max_calling_rate <- max(data_counts_by_hour_day$DataCount, na.rm = TRUE)
+
+# find the site the max vocal count occurred
+peak_calling_period <- data_counts_by_hour_day %>%
+  filter(DataCount == max_calling_rate)
+
+print(peak_calling_period)
+```
+
+```{r}
+# Graph of average calls per hour across all days by location
+
+# Colorblind friendly palette:
+# cbPalette <- c("#000000", "#009E73", "#56B4E9", "#E69F00", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
+
+# Colors that match my map figure and table 1
+cbPalette <- c("#6BD3FF", "#70FB76", "#008B8D", "#FF726C", "#490F8D", "#9131FF", "#D67DFF")
+
+# Ensure Location is a factor with distinct levels
+average_calls_per_hour_location$Location <- factor(average_calls_per_hour_location$Location)
+
+# Define distinct shapes for each location
+shape_values <- c(18, 3, 16, 7, 17, 19, 15)  # Assign different shapes to avoid overlap
+
+g <- ggplot(
+  average_calls_per_hour_location, 
+  aes(Hour, AverageDataCount, color = Location, shape = Location)) + 
+  geom_line() + 
+  geom_point(size = 3) +  # Adjust size for better visibility
+  theme_classic() + 
+  labs(title = "Average Calls Per Hour", y = "Average Number of Calls", x = "Hour") +   
+  scale_colour_manual(values = cbPalette) + 
+  scale_shape_manual(values = shape_values)  # Apply distinct shapes to each location
+
+ggsave("temporalplots_distinct_shapes.png", g, width = 8.5, height = 6, units = "in", dpi = 600)
+
+```
+
+
+```{r}
+# Creating dataframe that includes sd of frequency of calls per hour
+df.summary <- data_counts_by_hour_day %>%
+  group_by(Location, Hour) %>%
+  summarise(
+    sd = sd(DataCount, na.rm = TRUE),
+    DataCount = mean(DataCount)
+  )
+df.summary
+
+# Graph of average calls per hour across all days with error bars
+ggplot(df.summary, aes(x = Hour, y = DataCount, color = Location)) +
+geom_line() + 
+geom_point() +
+ geom_errorbar(aes(ymin = DataCount-sd, ymax = DataCount+sd), width = 0.2) + labs(title = "Average Calls Per Hour", y = "Average Number of Calls", x = "Hour") + facet_wrap( ~ Location)
+```
+
+
+```{r}
+# 
+CallCounts <- firstfiveminutes %>%
+  group_by(Location, Date, Hour, Call) %>%
+  summarize(DataCount = n(), .groups = 'drop')
+
+# Merge with the complete set and replace missing values with 0
+CallCounts <- soundtrap_active %>%
+  left_join(CallCounts, by = c("Hour", "Date", "Location")) %>%
+  replace_na(list(DataCount = 0))
+
+```
+
+```{r}
+#SUMMARY STATS
+
+# Number of calls
+CallCounts %>% 
+  group_by(Location)  %>% 
+  summarise(total = sum(DataCount))
+
+firstfiveminutes %>% 
+  group_by(Call)  %>% 
+  summarise(total = n())
+
+cbind(
+  table(Everything$Call), 
+  table(firstfiveminutes$Call)
+)
+
+round(prop.table(table(firstfiveminutes$Call)), 3)
+
+# Number of calls per call type at each location
+CallCounts %>% 
+  group_by(Location, Call) %>% 
+  summarise(total = sum(DataCount)) %>% 
+  arrange(Location, Call)
+
+```
+
+
+```{r}
+# Creating a table of number of calls/call type at each site for the first five min analyzed
+library(tidyr)
+
+# Group by Call and Location, and summarize the total number of calls for each combination
+call_type_location_table <- CallCounts %>%
+  group_by(Call, Location) %>%
+  summarise(total_calls = sum(DataCount), .groups = 'drop')  # Summarize the number of calls per Call and Location
+
+# Reshape the data so that Call types are rows and Locations are columns
+call_type_location_table_wide <- call_type_location_table %>%
+  pivot_wider(names_from = Location, values_from = total_calls, values_fill = list(total_calls = 0))  # Fill missing values with 0
+
+# View the final table
+print(call_type_location_table_wide)
+
+# Save the table as a CSV file
+write.csv(call_type_location_table_wide, "firstfivemin_call_type_location_table.csv", row.names = FALSE)
+```
+
+
+```{r}
+# Creating a table of number of calls/call type at each site for Everything analyzed (not just the first five minutes)
+everything_table <- Everything %>%
+  group_by(Call, Location) %>%
+  summarise(total_calls = n(), .groups = 'drop')  # Summarize the number of calls (counting rows for each Call and Location)
+
+# Reshape the data so that Call types are rows and Locations are columns
+everything_table_wide <- everything_table %>%
+  pivot_wider(names_from = Location, values_from = total_calls, values_fill = list(total_calls = 0))  # Fill missing values with 0
+
+# Save the table as a CSV file
+write.csv(everything_table_wide, "everything_call_type_location_table.csv", row.names = FALSE)
+
+```
+
+
+```{r}
+# To figure out where a certain call type is location (which datasheet it is in)
+Everything[Everything$Call == 'WhoopGrunt', ]
+```
+
+
+```{r}
+# Create figure for diel patterns of top four call types
+
+# Define the vocal types to include in the plot
+selected_calls <- c("Croak", "Growl", "Moan", "Whoop")
+
+# Summarize total calls per hour for the selected vocal types, grouped by location
+filtered_diel_patterns <- firstfiveminutes %>%
+  filter(Call %in% selected_calls) %>%
+  group_by(Hour, Call, Location) %>%
+  summarise(TotalCalls = n(), .groups = 'drop')  # Count the number of calls
+
+# Define the custom color palette with updated colors
+custom_palette <- c("FFS" = "#6BD3FF", "PHR" = "#FF726C", "LehuaRock" = "#008B8D", 
+                    "RI20_2" = "#D67DFF", "RI21" = "#490F8D", "Kala" = "#70FB76")
+
+# Ensure the legend order AND stacking order match: FFS at top, Kala at bottom
+filtered_diel_patterns$Location <- factor(filtered_diel_patterns$Location, 
+                                          levels = c("Kala", "RI21", "RI20_2", "LehuaRock", "PHR", "FFS"))  # Order for stacking (bottom to top)
+
+# Create the stacked bar plot with flexible y-axis for each call type
+ggplot(filtered_diel_patterns, aes(x = Hour, y = TotalCalls, fill = Location)) +
+  geom_bar(stat = "identity", position = "stack") +  # Stacked bars to show location contribution
+  theme_classic() +
+  labs(title = "Diel Patterns of Selected Vocal Types by Location",
+       x = "Hour of the Day",
+       y = "Total Calls per Five-Minute Interval",
+       fill = "Location") +
+  scale_x_continuous(breaks = seq(0, 23, 3)) +  # Tick marks every 3 hours
+  facet_wrap(~ Call, scales = "free_y") +  # ALLOW DIFFERENT Y-AXIS LIMITS FOR EACH VOCAL TYPE
+  scale_fill_manual(values = custom_palette, guide = guide_legend(reverse = TRUE)) +  # Match legend order
+  theme(legend.position = "right")  # Ensure legend placement
+
+# Save the plot
+ggsave("diel_patterns_stacked_barplot_corrected_colors.png", width = 10, height = 6, dpi = 600)
+
+```
