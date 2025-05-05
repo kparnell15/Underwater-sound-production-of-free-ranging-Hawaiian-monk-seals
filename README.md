@@ -1,6 +1,11 @@
-**Title of study**
+# Title of study
 
-**Summary**
+Underwater sound production of free-ranging Hawaiian monk seals
+
+
+# Summary
+
+This repository contains processed data and R scripts supporting a study on the underwater vocal behavior of the endangered Hawaiian monk seal (Neomonachus schauinslandi). Using over 4,500 hours of passive acoustic recordings from five sites across the Hawaiian Archipelago, we detected and classified more than 23,000 underwater vocalizations. We identified 27 distinct call types, including 22 previously undescribed calls and evidence of combinational calls—an unreported communication strategy in pinnipeds. Acoustic analyses and temporal patterns reveal that vocalizations are predominantly low-frequency (<1 kHz), short to medium in duration, and often occur in bouts, with vocalizations produced throughout the day at some sites. These findings establish a foundational understanding of monk seal acoustic communication to support future behavioral research and conservation efforts.
 
 
 #  Overview of folders/files and their contents: 
@@ -14,17 +19,17 @@ While raw acoustic recordings are not publicly archived due to file size (> 20 T
 All .R files were created in RStudio version 2024.09.0+375
 
 Packages used in rmsvocaltrends:
-ggplot2
-dplyr
-lubridate
-tidyverse
-readxl
+ggplot2,
+dplyr,
+lubridate,
+tidyverse,
+readxl,
 tidyr
 
 Packages used in DFA Analysis:
-corrplot
-MASS
-ggplot2
-caret
-dplyr
+corrplot,
+MASS,
+ggplot2,
+caret,
+dplyr,
 reshape2
