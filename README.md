@@ -16,7 +16,7 @@ This repository includes two folders:
 
 While raw acoustic recordings are not publicly archived due to file size (> 20 TB), all processed data used in the analysis are provided.
 
-All .R files were created in RStudio version 2024.09.0+375
+All .R files were created in R version 4.4.1. 
 
 Packages used in rmsvocaltrends:
 ggplot2,
